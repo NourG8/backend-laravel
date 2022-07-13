@@ -36,6 +36,8 @@ class UserController extends Controller
         $data['name'] = $request['name'];
         $data['email'] = $request['email'];
         $data['password'] = $request['password'];
+        $data['valid'] ="Non valid";
+        $data['role'] ="User";
         User::create($data);
         return response()->json([
             'message' => "Successfully created",
@@ -175,5 +177,20 @@ return response($user);
         $user->delete();
 
         return response(null, 204);
+    }
+
+    // public function verif(String $mail, String $userE){
+    //     if($mail==$userE){
+    //        $msg="true";
+    //     }
+    //     else{
+    //         $msg="false";
+    //     }
+    //     return $msg;
+    // }
+
+    public function verif( $mail){
+       $user= User::where("email",'like',$mail)->get();
+       return $user;
     }
 }

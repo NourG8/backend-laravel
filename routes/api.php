@@ -31,9 +31,10 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
 
 Route::apiResource('users',UserController::class);
 Route::get('/users/{id}',[UserController::class, 'show']);
-Route::post('/create',[UserController::class,'create']);
+Route::post('/create','App\Http\Controllers\Api\UserController@create');
 Route::post('/forgot', 'App\Http\Controllers\ForgetPassword@forgot');
 Route::post('/reset', 'App\Http\Controllers\ForgetPassword@reset');
+Route::get('/verif/{email}', 'App\Http\Controllers\Api\UserController@verif');
 
 
 
